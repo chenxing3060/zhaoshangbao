@@ -1,0 +1,68 @@
+.guide-tooltip-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.guide-tooltip-content {
+  background: white;
+  padding: 28px 36px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 450px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  animation: fade-in-scale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.guide-tooltip-content h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.guide-tooltip-content p {
+  color: var(--text-color-secondary);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  font-size: 16px;
+}
+
+.guide-tooltip-content button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.guide-tooltip-content button:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+}

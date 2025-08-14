@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "上海静安大悦城",
+    "location": "上海市-静安区",
+    "target_audience": "年轻时尚",
+    "rent_min": 800,
+    "rent_max": 2000,
+    "available_area": 120
+  },
+  {
+    "id": 2,
+    "name": "杭州滨江宝龙城",
+    "location": "杭州市-滨江区",
+    "target_audience": "家庭",
+    "rent_min": 400,
+    "rent_max": 1200,
+    "available_area": 250
+  },
+  {
+    "id": 3,
+    "name": "深圳万象天地",
+    "location": "深圳市-南山区",
+    "target_audience": "高端商务",
+    "rent_min": 1500,
+    "rent_max": 3500,
+    "available_area": 80
+  },
+  {
+    "id": 4,
+    "name": "成都太古里",
+    "location": "成都市-锦江区",
+    "target_audience": "潮流文创",
+    "rent_min": 1000,
+    "rent_max": 2800,
+    "available_area": 150
+  }
+]

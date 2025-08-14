@@ -1,0 +1,131 @@
+.competition-modal .modal-content {
+  max-width: 850px; /* Wider modal for map */
+}
+
+.competition-map-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.map-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-pins-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s;
+  animation: pin-bounce 0.5s ease-out;
+  animation-fill-mode: both;
+  animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+@keyframes pin-bounce {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -80%);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -110%);
+  }
+  100% {
+    transform: translate(-50%, -100%);
+  }
+}
+
+.pin:hover {
+  transform: translate(-50%, -110%) scale(1.05);
+  z-index: 10;
+}
+
+.pin span {
+  padding: 6px 12px;
+  border-radius: 16px;
+  color: white;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.pin::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  bottom: -8px;
+}
+
+.target-pin {
+  z-index: 5;
+  --i: 0;
+}
+
+.target-pin span {
+  background-color: var(--primary-color);
+  font-weight: 700;
+  padding: 8px 14px;
+}
+
+.target-pin::after {
+  border-top: 12px solid var(--primary-color);
+}
+
+.competitor-pin {
+  --i: attr(data-index);
+}
+
+.competitor-pin:nth-child(2) { --i: 1; }
+.competitor-pin:nth-child(3) { --i: 2; }
+.competitor-pin:nth-child(4) { --i: 3; }
+
+.competitor-pin span {
+  background-color: #e74c3c; /* A red color for competitors */
+}
+
+.competitor-pin::after {
+  border-top: 12px solid #e74c3c;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .competition-map-container {
+    height: 400px;
+  }
+  
+  .pin span {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .competition-map-container {
+    height: 350px;
+  }
+}

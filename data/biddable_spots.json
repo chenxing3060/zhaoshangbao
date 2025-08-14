@@ -1,0 +1,26 @@
+[
+  {
+    "id": 101,
+    "name": "中庭黄金展位 A-1",
+    "project_id": 1,
+    "description": "位于市中心购物中心一楼中庭，人流量巨大，适合品牌快闪活动。",
+    "area": 25,
+    "starting_bid": 20000,
+    "current_bid": 25000,
+    "bid_increment": 1000,
+    "end_time": "2025-09-01T18:00:00Z",
+    "image_url": "https://images.unsplash.com/photo-1523465382623-740b2d342133?q=80&w=800"
+  },
+  {
+    "id": 102,
+    "name": "临街独立商铺 B-8",
+    "project_id": 2,
+    "description": "社区商业街入口处，展示面好，适合零售或轻餐饮。",
+    "area": 80,
+    "starting_bid": 15000,
+    "current_bid": 15000,
+    "bid_increment": 500,
+    "end_time": "2025-09-05T12:00:00Z",
+    "image_url": "https://images.unsplash.com/photo-1559892235-4a745b56a9ac?q=80&w=800"
+  }
+]

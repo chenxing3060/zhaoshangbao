@@ -1,0 +1,71 @@
+{
+  "title": "模拟区域热力分析报告",
+  "imageUrl": "https://via.placeholder.com/800x400.png?text=Simulated+Heatmap+Image",
+  "summary": "本报告基于模拟数据，展示了特定区域的人流、消费能力和商业竞争度的热力分布情况。",
+  "dataPoints": [
+    { 
+      "id": 1, 
+      "location": "西湖区万象城", 
+      "traffic": 8500, 
+      "spendingPower": 78, 
+      "competition": 80,
+      "coordinates": [30.2741, 120.1551]
+    },
+    { 
+      "id": 2, 
+      "location": "滨江区星光大道", 
+      "traffic": 6200, 
+      "spendingPower": 65, 
+      "competition": 50,
+      "coordinates": [30.2092, 120.2122]
+    },
+    { 
+      "id": 3, 
+      "location": "拱墅区运河上街", 
+      "traffic": 9300, 
+      "spendingPower": 89, 
+      "competition": 80,
+      "coordinates": [30.3133, 120.1513]
+    },
+    { 
+      "id": 4, 
+      "location": "余杭区未来科技城", 
+      "traffic": 4500, 
+      "spendingPower": 52, 
+      "competition": 20,
+      "coordinates": [30.4282, 120.0059]
+    },
+    { 
+      "id": 5, 
+      "location": "上城区湖滨银泰", 
+      "traffic": 7800, 
+      "spendingPower": 92, 
+      "competition": 90,
+      "coordinates": [30.2548, 120.1686]
+    },
+    { 
+      "id": 6, 
+      "location": "钱塘区下沙大学城", 
+      "traffic": 5600, 
+      "spendingPower": 45, 
+      "competition": 30,
+      "coordinates": [30.3089, 120.3436]
+    },
+    { 
+      "id": 7, 
+      "location": "萧山区银隆百货", 
+      "traffic": 6800, 
+      "spendingPower": 68, 
+      "competition": 60,
+      "coordinates": [30.1626, 120.2651]
+    },
+    { 
+      "id": 8, 
+      "location": "临平区临平银泰", 
+      "traffic": 5200, 
+      "spendingPower": 58, 
+      "competition": 40,
+      "coordinates": [30.4191, 120.3012]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "喜茶 HEYTEA",
+    "type": "餐饮",
+    "target_audience": "年轻时尚",
+    "rent_budget": 1800,
+    "area_needed": 100
+  },
+  {
+    "id": 2,
+    "name": "乐高 LEGO",
+    "type": "零售",
+    "target_audience": "家庭",
+    "rent_budget": 1000,
+    "area_needed": 200
+  },
+  {
+    "id": 3,
+    "name": "Lululemon",
+    "type": "零售",
+    "target_audience": "高端商务",
+    "rent_budget": 3000,
+    "area_needed": 150
+  },
+  {
+    "id": 4,
+    "name": "茑屋书店",
+    "type": "文创",
+    "target_audience": "潮流文创",
+    "rent_budget": 2200,
+    "area_needed": 300
+  },
+  {
+    "id": 5,
+    "name": "Manner Coffee",
+    "type": "餐饮",
+    "target_audience": "年轻时尚",
+    "rent_budget": 1500,
+    "area_needed": 50
+  },
+  {
+    "id": 6,
+    "name": "蔚来中心 NIO House",
+    "type": "服务",
+    "target_audience": "高端商务",
+    "rent_budget": 2500,
+    "area_needed": 400
+  },
+  {
+    "id": 7,
+    "name": "泡泡玛特 POP MART",
+    "type": "零售",
+    "target_audience": "潮流文创",
+    "rent_budget": 1800,
+    "area_needed": 80
+  }
+]

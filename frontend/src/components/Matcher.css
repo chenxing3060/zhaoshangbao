@@ -1,0 +1,264 @@
+.matcher-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.matcher-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.matcher-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.matcher-header p {
+  font-size: 16px;
+  color: var(--text-color-secondary);
+  max-width: 500px;
+  margin: 8px auto 0;
+}
+
+.matcher-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.step-card {
+  background-color: var(--surface-color);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 24px;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.step-number {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.step-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Step 1: Project Selection */
+.project-selection-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.project-item {
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-item:hover {
+  border-color: var(--primary-color);
+}
+
+.project-item.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.project-item h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.project-item p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-color-secondary);
+}
+
+/* Step 2: Criteria Form */
+.criteria-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.rent-slider {
+  width: 100%;
+}
+
+.business-types-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.type-tag {
+  background-color: #f0f0f0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 14px;
+}
+
+.type-tag.selected {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+}
+
+.match-button {
+  align-self: flex-start;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.match-button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.match-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Step 3: Results */
+.loading-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-left-color: var(--primary-color);
+  animation: spin 1s ease infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 16px;
+  color: var(--text-color-secondary);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.brand-card {
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  transition: box-shadow 0.2s;
+}
+
+.brand-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.brand-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.brand-card-header .brand-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.match-score-badge {
+  background-color: #eafaf1;
+  color: #1e7e34;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.match-score-badge span {
+  display: block;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.match-score-badge strong {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.brand-card .brand-details {
+  font-size: 14px;
+  color: var(--text-color-secondary);
+  margin-bottom: 16px;
+}
+
+.match-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.reason-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.reason-tag.highlight {
+  background-color: #fff3cd;
+  color: #856404;
+  font-weight: 500;
+}
+
+.no-results-found {
+  text-align: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
