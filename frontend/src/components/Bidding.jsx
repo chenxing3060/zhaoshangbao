@@ -1,34 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Bidding.css';
 
-// 模拟的出价历史数据
+// --- Hardcoded Mock Data for Demo ---
+// This ensures the component is self-contained and avoids any issues with data fetching.
+const MOCK_SPOTS = [
+  {
+    "id": 101,
+    "name": "中庭黄金展位 A-1",
+    "description": "位于市中心购物中心一楼中庭，人流量巨大，适合品牌快闪活动。",
+    "area": 25,
+    "starting_bid": 20000,
+    "current_bid": 25000,
+    "bid_increment": 1000,
+    "image_url": "/images/spot_a1.jpg" // Path relative to the 'public' directory
+  },
+  {
+    "id": 102,
+    "name": "临街独立商铺 B-8",
+    "description": "社区商业街入口处，展示面好，适合零售或轻餐饮。",
+    "area": 80,
+    "starting_bid": 15000,
+    "current_bid": 15000,
+    "bid_increment": 500,
+    "image_url": "/images/spot_b8.jpg" // Path relative to the 'public' directory
+  }
+];
+
 const generateMockHistory = (currentBid) => [
   { user: '用户_***34e', amount: currentBid, time: '刚刚' },
   { user: '用户_***8f2', amount: currentBid - 1000, time: '2分钟前' },
   { user: '用户_***a1c', amount: currentBid - 2500, time: '3分钟前' },
 ];
+// --- End of Mock Data ---
+
 
 const Bidding = () => {
-  const [spots, setSpots] = useState([]);
-  const [selectedSpot, setSelectedSpot] = useState(null);
-  const [bidAmount, setBidAmount] = useState(0);
-  const [bidHistory, setBidHistory] = useState([]);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    fetch('/api/bidding/spots')
-      .then(res => res.json())
-      .then(data => {
-        setSpots(data);
-        if (data.length > 0) {
-          handleSelectSpot(data[0]);
-        }
-      })
-      .catch(err => {
-        console.error("Failed to fetch spots", err);
-        setError("加载竞标铺位失败，请稍后再试。");
-      });
-  }, []);
+  const [spots, setSpots] = useState(MOCK_SPOTS);
+  const [selectedSpot, setSelectedSpot] = useState(MOCK_SPOTS[0]);
+  const [bidAmount, setBidAmount] = useState(selectedSpot.current_bid + selectedSpot.bid_increment);
+  const [bidHistory, setBidHistory] = useState(generateMockHistory(selectedSpot.current_bid));
 
   const handleSelectSpot = (spot) => {
     setSelectedSpot(spot);
@@ -37,54 +47,28 @@ const Bidding = () => {
   };
 
   const submitBid = () => {
+    // This is a mock submission for the demo.
     if (!selectedSpot) return;
 
     if (bidAmount < selectedSpot.current_bid + selectedSpot.bid_increment) {
       alert(`出价必须高于当前价+加价幅度 (¥${selectedSpot.current_bid + selectedSpot.bid_increment})`);
       return;
     }
+    
+    alert(`成功为 "${selectedSpot.name}" 出价 ¥${bidAmount}！\n(这是一个演示操作)`);
 
-    // 调用真实API
-    fetch('/api/bidding/bid', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        spot_id: selectedSpot.id,
-        bid_amount: bidAmount
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        // 更新UI
-        const updatedSpot = { 
-          ...selectedSpot, 
-          current_bid: data.new_bid || bidAmount,
-          premium_rate: ((data.new_bid - selectedSpot.starting_bid) / selectedSpot.starting_bid) * 100
-        };
-        const updatedSpots = spots.map(s => s.id === selectedSpot.id ? updatedSpot : s);
-        setSpots(updatedSpots);
-        setSelectedSpot(updatedSpot);
-        
-        // 更新出价历史
-        const newHistory = [{ user: '您', amount: bidAmount, time: '刚刚' }, ...bidHistory];
-        setBidHistory(newHistory);
+    // Update UI optimistically
+    const updatedSpot = { ...selectedSpot, current_bid: bidAmount };
+    const updatedSpots = spots.map(s => s.id === selectedSpot.id ? updatedSpot : s);
+    setSpots(updatedSpots);
+    setSelectedSpot(updatedSpot);
+    
+    const newHistory = [{ user: '您', amount: bidAmount, time: '刚刚' }, ...bidHistory];
+    setBidHistory(newHistory);
 
-        // 准备下一次出价
-        setBidAmount(updatedSpot.current_bid + updatedSpot.bid_increment);
-      } else {
-        alert(data.message || '出价失败，请重试');
-      }
-    })
-    .catch(err => {
-      console.error("出价提交失败", err);
-      alert("出价提交失败，请稍后再试");
-    });
+    setBidAmount(updatedSpot.current_bid + updatedSpot.bid_increment);
   };
 
-  if (error) return <p className="error-message">{error}</p>;
   if (!selectedSpot) return <div className="loading-container"><div className="spinner"></div></div>;
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import HeatmapLayer from 'react-leaflet-heatmap-layer-v3';
+import CustomHeatmapLayer from './CustomHeatmapLayer';
 import 'leaflet/dist/leaflet.css';
 import './Heatmap.css';
 
@@ -72,11 +72,8 @@ const Heatmap = () => {
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
-          <HeatmapLayer
+          <CustomHeatmapLayer
             points={getLayerData(activeLayer)}
-            longitudeExtractor={m => m[1]}
-            latitudeExtractor={m => m[0]}
-            intensityExtractor={m => m[2]}
             radius={30}
             blur={20}
             max={activeLayer === 'traffic' ? 10000 : 100}

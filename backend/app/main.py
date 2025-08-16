@@ -1,12 +1,14 @@
 import json
 import os
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import logging
 
 # Setup basic logging to see request details in the terminal
 logging.basicConfig(level=logging.DEBUG)
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../static')
+CORS(app) # Enable CORS for all routes
 
 @app.before_request
 def log_request_info():

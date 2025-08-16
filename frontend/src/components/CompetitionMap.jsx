@@ -1,15 +1,24 @@
 import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import './CompetitionMap.css';
 
-// Mock data for competitors. In a real app, this would come from the backend.
+// Mock data for competitors, now with coordinate offsets
 const MOCK_COMPETITORS = [
-  { name: '喜茶', x: 40, y: 35 },
-  { name: '星巴克', x: 60, y: 45 },
-  { name: 'Manner', x: 55, y: 65 },
+  { name: '喜茶', offset: [0.001, -0.001] },
+  { name: '星巴克', offset: [-0.0005, 0.0015] },
+  { name: 'Manner', offset: [0.0015, 0.0008] },
 ];
 
 const CompetitionMap = ({ location, onClose }) => {
-  if (!location) return null;
+  if (!location || !location.coordinates) return null;
+
+  const competitorsWithCoords = MOCK_COMPETITORS.map(comp => ({
+    name: comp.name,
+    coordinates: [
+      location.coordinates[0] + comp.offset[0],
+      location.coordinates[1] + comp.offset[1]
+    ]
+  }));
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -20,19 +29,22 @@ const CompetitionMap = ({ location, onClose }) => {
         </div>
         <div className="modal-body">
           <div className="competition-map-container">
-            <img src="https://raw.githubusercontent.com/Tencent-CodeBuddy/zhaoshangbao-asset/main/map-detail.png" alt="Detail Map" className="map-background" />
-            <div className="map-pins-overlay">
-              {/* Target Location Pin */}
-              <div className="pin target-pin" style={{ top: '50%', left: '50%' }}>
-                <span>您选择的铺位</span>
-              </div>
-              {/* Competitor Pins */}
-              {MOCK_COMPETITORS.map((comp, index) => (
-                <div key={index} className="pin competitor-pin" style={{ top: `${comp.y}%`, left: `${comp.x}%` }}>
-                  <span>{comp.name}</span>
-                </div>
+            <MapContainer center={location.coordinates} zoom={16} style={{ height: '100%', width: '100%' }}>
+              <TileLayer
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              />
+              {/* Target Location Marker */}
+              <Marker position={location.coordinates}>
+                <Popup>您选择的铺位: <br /> {location.name}</Popup>
+              </Marker>
+              {/* Competitor Markers */}
+              {competitorsWithCoords.map((comp, index) => (
+                <Marker key={index} position={comp.coordinates}>
+                  <Popup>{comp.name}</Popup>
+                </Marker>
               ))}
-            </div>
+            </MapContainer>
           </div>
         </div>
       </div>
